@@ -23,5 +23,13 @@ resource "azurerm_linux_virtual_machine" "ansible" {
     version   = "latest"
   }
 
+  custom_data = <<-EOF
+    #cloud-config
+    package_update: true
+    package_upgrade: true
+    runcmd:
+      - curl https://raw.githubusercontent.com/alperen-selcuk/docker-install/refs/heads/main/ubuntu-2204.sh | bash -
+  EOF
+
   depends_on = [ local_file.ssh-key ]
 }
