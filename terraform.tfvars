@@ -11,4 +11,6 @@ name = {
   "public" = "test-public-ip"
   "ip" = "test-ip"
   "nic" = "test-nic"
+  "vm" = "test-vm"
+  "nsg" = "test-nsg"
 }
