@@ -8,4 +8,7 @@ test = {
 name = {
   "subnet" = "test-subnet"
   "vnet"  = "test-network"
+  "public" = "test-public-ip"
+  "ip" = "test-ip"
+  "nic" = "test-nic"
 }
