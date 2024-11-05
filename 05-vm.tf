@@ -1,13 +1,13 @@
 resource "azurerm_linux_virtual_machine" "test" {
-  name                = var.name.vm
+  name                  = var.name.vm
   location              = azurerm_resource_group.test.location
   resource_group_name   = azurerm_resource_group.test.name
   network_interface_ids = [azurerm_network_interface.test.id]
-  size                = "Standard_B2ms"
-  admin_username      = "test"
+  size                  = "Standard_B2ms"
+  admin_username        = "docker"
 
   admin_ssh_key {
-    username   = "test"
+    username   = "docker"
     public_key = tls_private_key.ssh-key.public_key_openssh
   }
 
@@ -23,13 +23,15 @@ resource "azurerm_linux_virtual_machine" "test" {
     version   = "latest"
   }
 
-  custom_data = <<-EOF
+  custom_data = base64encode(<<-EOF
     #cloud-config
     package_update: true
     package_upgrade: true
     runcmd:
       - curl https://raw.githubusercontent.com/alperen-selcuk/docker-install/refs/heads/main/ubuntu-2204.sh | bash -
   EOF
+  )
 
-  depends_on = [ local_file.ssh-key ]
+  depends_on = [local_file.ssh-key]
 }
+
