@@ -1,4 +1,4 @@
-resource "azurerm_linux_virtual_machine" "ansible" {
+resource "azurerm_linux_virtual_machine" "test" {
   name                = var.name.vm
   location              = azurerm_resource_group.test.location
   resource_group_name   = azurerm_resource_group.test.name
