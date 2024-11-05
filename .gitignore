@@ -3,3 +3,4 @@ secrets.tfvars
 .terraform*
 *.tfstate
 *.tfstate.*
+ssh.pem
